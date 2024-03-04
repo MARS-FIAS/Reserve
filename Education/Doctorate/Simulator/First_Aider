@@ -1,0 +1,46 @@
+################
+Modification Date
+	01/12/2020
+Author
+	MARS/FIAS
+
+################
+Introduction
+	
+	Hello my dear (new) user/developer!
+
+	Welcome to our small piece of code. We have (obsesively) organized the "Simulator" directory to facilitate its navigation.
+	This little text file was created with you as our primary goal; it will guide you easily and effectively around this directory.
+	Our mission is not to provide you every possible detail, but we want to direct you to the proper places to facilitate your work.
+	So, let's get started...
+
+We decided to split the workflow for only two kinds of people: users, developers.
+If you find any need to improve/refresh this intial help file, then keep the last premise in mind, please.
+
+########
+User mode
+	
+	* Our wise developer minions should have extensively documented their work,
+	and they should have placed those documents under the folder "Help_Docs".
+	This is where you should also find the folders "Directory_Description" and "Summary";
+	both must have text files illustrating the structure and the goal of "Simulator".
+	* Some useful tutorials should appear under "Examples".
+	* Whatever file or program you would like to execute, it should be placed in the folder "Projects".
+	* Unless you are also acting as developer, there's nothing to look for under "Resources". ;)
+
+########
+Developer mode
+	
+	* Your precious contribution stars when you master the internal structure of the folder "Resources".
+	A detailed description of the whole concept of "Simulator" must be availble in the folder "Help_Docs".
+	* Every new coding journey should begin by placing (and organizing) a proper directory under the "Projects" folder.
+	Please, take time to write accessible documentation about your new scripts.
+	* All our main definitions (e.g., classes, functions) are placed in different files accross the folder "Resources";
+	needless to say, any extra definiton deemed relevant and general should be added in a smooth way to the existing ones.
+	We certainly can't be precise about being "smooth", but it's important to understand the reasons behind the structure of our whole endevour.
+
+################
+Conclusion
+	
+	We hope you will enjoy using our humble tool!
+	Thank you!

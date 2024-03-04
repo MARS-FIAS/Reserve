@@ -1,0 +1,4 @@
+# BiochemBase
+
+class BiochemBase:
+    pass

@@ -1,0 +1,100 @@
+################ Sup Comp ################
+
+######## Utilities ########
+
+file_names = {'testa_array.sh', 'testa_array.py'}
+ls -a
+nano <file_name.*>
+rm <file_name.*>
+cp <from> <to>
+
+sbatch <file_name.sh>
+squeue -u ramirez
+scancel 1234567890
+exit
+
+User!
+    ssh <ramirez@goethe.hhlr-gu.de>
+    <Mars_FIAS_0>
+
+######## Transport ########
+
+scp /home/mars-fias/Documents/Education/Doctorate/Simulator/Projects/Art_Intel/Toy_Model/Resources/*.py ramirez@goethe.hhlr-gu.de:/home/biochemsim/ramirez/mars_projects/spatial_coupling_art_intel/resources/
+scp /home/mars-fias/Documents/Education/Doctorate/Simulator/Projects/Art_Intel/Toy_Model/Resources/*.py ramirez@goethe.hhlr-gu.de:/home/biochemsim/ramirez/mars_projects/spatial_coupling_art_intel/repo_save/
+scp /home/mars-fias/Documents/Education/Doctorate/Simulator/Projects/Art_Intel/Toy_Model/Spatial_Coupling_3D_AI_0.py ramirez@goethe.hhlr-gu.de:/home/biochemsim/ramirez/mars_projects/spatial_coupling_art_intel/
+scp ramirez@goethe.hhlr-gu.de:/scratch/biochemsim/ramirez/mars_projects/spatial_coupling_art_intel/data_bank/Spatial_Coupling_3D_AI_1/*.pt /media/mars-fias/MARS/MARS_Data_Bank/Art_Intel/Spatial_Coupling_3D_AI_1/
+
+######## SH 0 ########
+
+#!/bin/bash
+#SBATCH --job-name=mars_testa_array
+#SBATCH --partition=general1
+#SBATCH --nodes=1
+#SBATCH --ntasks=10
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=4096
+#SBATCH --extra-node-info=2:20:1
+#SBATCH --time=01:00:00
+#SBATCH --mail-type=FAIL
+
+#SBATCH --array=0-9
+
+#SBATCH --output=testa_array_%A_%a.out
+
+task_index=$SLURM_ARRAY_TASK_ID
+python ./testa_array.py $task_index
+
+######## SH 1 ########
+
+#!/bin/bash
+#SBATCH --job-name=mars_testa_array
+#SBATCH --partition=general1
+#SBATCH --nodes=2
+#SBATCH --ntasks=5
+#SBATCH --cpus-per-task=8
+#SBATCH --mem-per-cpu=4096
+#SBATCH --extra-node-info=2:20:1
+#SBATCH --time=01:00:00
+#SBATCH --mail-type=FAIL
+
+#SBATCH --array=0-9
+
+#SBATCH --output=testa_array_%A_%a.out
+
+task_index=$SLURM_ARRAY_TASK_ID
+python ./testa_array.py $task_index
+
+######## PIE ########
+
+# Testa Array
+
+import time
+ts = time.time()
+
+import numpy as np
+import numba
+from sbi.examples.minimal import simple
+
+posterior = simple()
+print(posterior)
+print('NUMPY', np.__version__)
+print('NUMBA', numba.__version__)
+
+rana = np.random.default_rng(seed = None).choice(a = np.arange(10), size = 10)
+print(rana)
+
+import sys
+task_index = sys.argv[1]
+print(task_index)
+
+tf = time.time()
+print(tf-ts)
+
+######## SLURM ########
+
+scontrol -d show job 968370
+
+scontrol update job 968370 StartTime=2023-02-21T12:15:00
+
+################ Sup Comp ################
+
